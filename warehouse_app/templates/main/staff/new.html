@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+{% load widget_tweaks %}
+    <div class="col-md-12 col-lg-6 offset-md-3">
+        <div class="list-group">
+            <form method="POST">
+                {% csrf_token %}
+                {% for field in form.visible_fields %}
+                    {% if field.name == "is_admin" %}
+                        <div class="form-group">
+                            {% render_field field id=field.name class="my-2" %}
+                            <label for="{{field.name}}">{{field.label}}</label>
+                            {% for error in field.errors %}
+                                <span class="help-block text-danger">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% elif field.name == "username" %}
+                        <div class="form-group">
+                            {% render_field field class="form-control my-2" placeholder="Логин" %}
+                            {% for error in field.errors %}
+                                <span class="help-block text-danger">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="form-group">
+                            {% render_field field class="form-control my-2" placeholder=field.label %}
+                            {% for error in field.errors %}
+                                <span class="help-block text-danger">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <div class="d-grid gap-2 my-2">
+                    <button type="submit" class="my-2 btn btn-block btn-primary">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

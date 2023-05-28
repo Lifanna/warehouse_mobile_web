@@ -1,0 +1,19 @@
+body {
+	font-family: "Roboto", sans-serif;
+	height: 100vh;
+}
+
+.bg-navbar-main {
+	background-color: #1E90FF;
+}
+  
+a {
+	color: #92badd;
+	display:inline-block;
+	text-decoration: none;
+	font-weight: 400;
+}
+
+.li-custom {
+	list-style-type: none;
+}

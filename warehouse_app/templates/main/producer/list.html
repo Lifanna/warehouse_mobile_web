@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="col-md-12 col-lg-6 offset-md-3">
+        <div class="list-group">
+            {% for producer in object_list %}
+                <a href="/producers/edit/{{ producer.id }}" class="my-2 btn btn-secondary">{{producer.name}}</a>
+            {% endfor %}
+
+            <a href="/producers/add" class="my-2 btn btn-primary">Добавить производителя</a>
+        </div>
+    </div>
+{% endblock %}

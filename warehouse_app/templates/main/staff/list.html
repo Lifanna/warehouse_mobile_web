@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="col-md-12 col-lg-6 offset-md-3">
+        <div class="list-group">
+            {% for staff_member in object_list %}
+                <a href="/staff/edit/{{ staff_member.id }}" class="my-2 btn btn-secondary">{{staff_member.first_name}} {{staff_member.last_name}}</a>
+            {% endfor %}
+
+            <a href="/staff/add" class="my-2 btn btn-primary">Добавить сотрудника</a>
+        </div>
+    </div>
+{% endblock %}

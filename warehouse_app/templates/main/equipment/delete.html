@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+{% load widget_tweaks %}
+    <div class="col-md-12 col-lg-6 offset-md-3">
+        <div class="list-group">
+            <form method="POST">
+                {% csrf_token %}
+                <h3>Вы действительно хотите удалить оборудование {{object.name}}?</h3>
+                <div class="d-grid gap-2 my-2">
+                    <button type="submit" class="btn btn-block btn-danger">Удалить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

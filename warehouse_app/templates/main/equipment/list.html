@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="col-md-12 col-lg-6 offset-md-3">
+        <div class="list-group">
+            {% for equipment in object_list %}
+                <a href="/equipment/edit/{{ equipment.id }}" class="my-2 btn btn-secondary">{{equipment.name}}</a>
+            {% endfor %}
+
+            {% if request.user.is_admin %}
+                <a href="/equipment/add" class="my-2 btn btn-primary">Добавить оборудование</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

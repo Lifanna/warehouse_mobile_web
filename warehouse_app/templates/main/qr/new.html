@@ -1,0 +1,115 @@
+{% extends "layout.html" %}
+{% block content %}
+{% load widget_tweaks %}
+    <style>
+        div {
+            margin-bottom: 16px;
+        }
+
+        #video-container {
+            line-height: 0;
+        }
+
+        #video-container.example-style-1 .scan-region-highlight-svg,
+        #video-container.example-style-1 .code-outline-highlight {
+            stroke: #64a2f3 !important;
+        }
+
+        #video-container.example-style-2 {
+            position: relative;
+            width: max-content;
+            height: max-content;
+            overflow: hidden;
+        }
+        #video-container.example-style-2 .scan-region-highlight {
+            border-radius: 30px;
+            outline: rgba(0, 0, 0, .25) solid 50vmax;
+        }
+        #video-container.example-style-2 .scan-region-highlight-svg {
+            display: none;
+        }
+        #video-container.example-style-2 .code-outline-highlight {
+            stroke: rgba(255, 255, 255, .5) !important;
+            stroke-width: 15 !important;
+            stroke-dasharray: none !important;
+        }
+
+        #flash-toggle {
+            display: none;
+        }
+
+        hr {
+            margin-top: 32px;
+        }
+        input[type="file"] {
+            display: block;
+            margin-bottom: 16px;
+        }
+        .col-12 video {
+            object-fit: fill;
+        }
+    </style>
+    <div class="col-12 col-lg-6 offset-md-3">
+        <div id="video-container">
+            <video id="qr-video"  width="100%"></video>
+        </div>
+        <input type="hidden" id="user" value="{{request.user.id}}">
+        <div id="qrForm"></div>
+        <div class="modal fade modal-dialog modal-dialog-centered" tabindex="-1" id="notFoundModal" aria-labelledby="notFoundModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="row text-center mt-3">
+                  <h5 class="modal-title" id="notFoundModalLabel">Ошибка</h5>
+                </div>
+                <div class="text-center">
+                  QR-код не содержит данные
+                </div>
+                <div class="d-grid gap-2 m-2">
+                    {% comment %} <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> {% endcomment %}
+                    <button type="button" class="btn btn-primary btn-block" id="scanAgainNotFoundModalBtn">Сканировать заново</button>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="modal fade modal-dialog modal-dialog-centered" tabindex="-1" id="errorModal" aria-labelledby="errorModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="row text-center mt-3">
+                  <h5 class="modal-title" id="errorModalLabel">Ошибка</h5>
+                </div>
+                <div class="text-center">
+                  QR-код не содержит данные
+                </div>
+                <div class="d-grid gap-2 m-2">
+                    {% comment %} <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> {% endcomment %}
+                    <button type="button" class="btn btn-primary btn-block" id="scanAgainModalBtn">Сканировать заново</button>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    {% comment %} <div class="modal-dialog modal-dialog-centered" id="errorModal"> {% endcomment %}
+    <div class="col-12 col-lg-6 offset-md-3">
+        <div class="modal fade modal-dialog modal-dialog-centered" tabindex="-1" id="successModal" aria-labelledby="successModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="row text-center mt-3">
+                    <h5 class="modal-title" id="successModalLabel">Сообщение</h5>
+                </div>
+                <div class="text-center">
+                    Оборудование успешно добавлено!
+                </div>
+                <div class="d-grid gap-2 m-2">
+                    {% comment %} <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> {% endcomment %}
+                    <button type="button" class="btn btn-primary btn-block" id="scanAgainSuccessModalBtn">Сканировать заново</button>
+                    <button type="button" class="btn btn-secondary btn-block" id="backSuccessModalBtn">Выйти</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/qr-scanner.umd.min.js"></script>
+    <script type="module" src="/static/js/main.js"></script>
+{% endblock %}

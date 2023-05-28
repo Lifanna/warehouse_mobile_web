@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="col-md-12 col-lg-6 offset-md-3">
+        <div class="list-group">
+            {% for warehouse in object_list %}
+                <a href="/warehouse/edit/{{ warehouse.id }}" class="my-2 btn btn-secondary">{{warehouse.name}}</a>
+            {% endfor %}
+
+            <a href="/warehouse/add" class="my-2 btn btn-primary">Добавить склад</a>
+        </div>
+    </div>
+{% endblock %}
